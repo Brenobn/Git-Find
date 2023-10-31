@@ -16,7 +16,7 @@ function App() {
           <div>
             <h3>Breno Braga</h3>
             <span>@Brenobn</span>
-            <p>Descrição</p>
+            <p>Descricão</p>
           </div>
         </div>
         <hr />
