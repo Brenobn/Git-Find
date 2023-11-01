@@ -1,16 +1,24 @@
+import { useState } from "react";
 import { Header } from "../../components/Header";
 import background from '../../assets/background.png';
+import ItemList from '../../components/ItemList';
 
 import './styles.css';
 
 function App() {
+  const [user, setUser] = useState('');
+  const [currentUser, setCurrentUser] = useState(null);
+  const [repos, setRepos] = useState('');
+
+  const handleGetData = async () 
+
   return <div className="App">
     <Header />
     <div className="content">
       <img src={background} className="background" alt="background app" />
       <div className="info">
         <div>
-          <input name="usuario" placeholder="@username" />
+          <input name="usuario" value={user} onChange={e => setUser(e.target.value)} placeholder="@username" />
           <button>Buscar</button>
         </div>
         <div className="perfil">
@@ -23,7 +31,10 @@ function App() {
         </div>
         <hr />
         <div>
-          <h4>Repositórios</h4>
+          <h4 className="repositorio">Repositórios</h4>
+          <ItemList title="teste1" description="teste de descrição" />
+          <ItemList title="teste1" description="teste de descrição" />
+          <ItemList title="teste1" description="teste de descrição" />
         </div>
       </div>
     </div>
