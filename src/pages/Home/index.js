@@ -15,11 +15,11 @@ function App() {
     const newUser = await userData.json();
 
     if(newUser.name) {
-      const { avatar_url, name, bio } = newUser;
-      setCurrentUser({ avatar_url, name, bio });
+      const { avatar_url, name, bio, login } = newUser;
+      setCurrentUser({ avatar_url, name, bio, login });
 
-      const reposData = await fetch(`https://api.github.com/users/${user}/${repos}`);
-      const newRepos = await userData.json();
+      const reposData = await fetch(`https://api.github.com/users/${user}/repos`);
+      const newRepos = await reposData.json();
 
       if(newRepos.length) {
         setRepos(newRepos);
@@ -38,22 +38,22 @@ function App() {
         </div>
         {currentUser?.name ? (<>
           <div className="perfil">
-            <img src="https://avatars.githubusercontent.com/u/107485462?v=4" alt="Imagem do perfil" className="profile" />
+            <img src={currentUser.avatar_url} alt="Imagem do perfil" className="profile" />
             <div>
-              <h3>Breno Braga</h3>
-              <span>@Brenobn</span>
-              <p>Descrição</p>
+              <h3>{currentUser.name}</h3>
+              <span>@{currentUser.login}</span>
+              <p>{currentUser.bio}</p>
             </div>
           </div>
           <hr />
         </>
         ) : null}
         {repos?.length ? (
-        <div>
+          <div>
           <h4 className="repositorio">Repositórios</h4>
-          <ItemList title="teste1" description="teste de descrição" />
-          <ItemList title="teste1" description="teste de descrição" />
-          <ItemList title="teste1" description="teste de descrição" />
+          {repos.map(repo => (
+            <ItemList title={repo.name} description={repo.description} />
+          ))}
         </div>
         ) : null}
       </div>
