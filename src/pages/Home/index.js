@@ -10,7 +10,12 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [repos, setRepos] = useState('');
 
-  const handleGetData = async () 
+  const handleGetData = async () => {
+    const userData = await fetch(`https://api.github.com/users/${user}`);
+    const newUser = await userData.json();
+
+    console.log(newUser);
+  }
 
   return <div className="App">
     <Header />
@@ -19,7 +24,7 @@ function App() {
       <div className="info">
         <div>
           <input name="usuario" value={user} onChange={e => setUser(e.target.value)} placeholder="@username" />
-          <button>Buscar</button>
+          <button onClick={handleGetData} >Buscar</button>
         </div>
         <div className="perfil">
           <img src="https://avatars.githubusercontent.com/u/107485462?v=4" alt="Imagem do perfil" className="profile" />
