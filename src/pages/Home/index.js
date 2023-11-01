@@ -1,5 +1,7 @@
 import { Header } from "../../components/Header";
-import background from '../../assets/background.png'
+import background from '../../assets/background.png';
+
+import './styles.css';
 
 function App() {
   return <div className="App">
@@ -16,10 +18,13 @@ function App() {
           <div>
             <h3>Breno Braga</h3>
             <span>@Brenobn</span>
-            <p>Descricão</p>
+            <p>Descrição</p>
           </div>
         </div>
         <hr />
+        <div>
+          <h4>Repositórios</h4>
+        </div>
       </div>
     </div>
   </div>

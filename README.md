@@ -20,7 +20,7 @@ Ter Git para clonar o projeto.
 Ter Node.js instalado.
 🚀 Começando
   # Clonar o projeto:
-  $ https://github.com/Brenobn/Git-Find
+  $ https://github.com/Brenobn/Git-Find.git
 
   # Entrar no diretório:
   $ cd gitfind
