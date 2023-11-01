@@ -17,6 +17,13 @@ function App() {
     if(newUser.name) {
       const { avatar_url, name, bio } = newUser;
       setCurrentUser({ avatar_url, name, bio });
+
+      const reposData = await fetch(`https://api.github.com/users/${user}/${repos}`);
+      const newRepos = await userData.json();
+
+      if(newRepos.length) {
+        setRepos(newRepos);
+      }
     }
   }
 
@@ -29,21 +36,26 @@ function App() {
           <input name="usuario" value={user} onChange={e => setUser(e.target.value)} placeholder="@username" />
           <button onClick={handleGetData} >Buscar</button>
         </div>
-        <div className="perfil">
-          <img src="https://avatars.githubusercontent.com/u/107485462?v=4" alt="Imagem do perfil" className="profile" />
-          <div>
-            <h3>Breno Braga</h3>
-            <span>@Brenobn</span>
-            <p>Descrição</p>
+        {currentUser?.name ? (<>
+          <div className="perfil">
+            <img src="https://avatars.githubusercontent.com/u/107485462?v=4" alt="Imagem do perfil" className="profile" />
+            <div>
+              <h3>Breno Braga</h3>
+              <span>@Brenobn</span>
+              <p>Descrição</p>
+            </div>
           </div>
-        </div>
-        <hr />
+          <hr />
+        </>
+        ) : null}
+        {repos?.length ? (
         <div>
           <h4 className="repositorio">Repositórios</h4>
           <ItemList title="teste1" description="teste de descrição" />
           <ItemList title="teste1" description="teste de descrição" />
           <ItemList title="teste1" description="teste de descrição" />
         </div>
+        ) : null}
       </div>
     </div>
   </div>
