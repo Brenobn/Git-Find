@@ -14,7 +14,10 @@ function App() {
     const userData = await fetch(`https://api.github.com/users/${user}`);
     const newUser = await userData.json();
 
-    console.log(newUser);
+    if(newUser.name) {
+      const { avatar_url, name, bio } = newUser;
+      setCurrentUser({ avatar_url, name, bio });
+    }
   }
 
   return <div className="App">
